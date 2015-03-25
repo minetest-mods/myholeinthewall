@@ -3,9 +3,15 @@ local shape = {}
 local make_ok = {}
 local anzahl = {}
 
-minetest.register_node("myholeinthewall:machine", {
-	description = "Hole Machine",
-	tiles = {"myholeinthewall_sand.png"
+minetest.register_node("myholeinthewall:machine_top", {
+--	description = "Hole Machine",
+	tiles = {
+		"myholeinthewall_machinet_top.png",
+		"myholeinthewall_machinet_top.png",
+		"myholeinthewall_machinet.png",
+		"myholeinthewall_machinet.png",
+		"myholeinthewall_machinet.png",
+		"myholeinthewall_machinet.png",
 		},
 	drawtype = "nodebox",
 	paramtype = "light",
@@ -14,21 +20,70 @@ minetest.register_node("myholeinthewall:machine", {
 	node_box = {
 		type = "fixed",
 		fixed = {
-			{-0.5, 0.4375, -0.5, 0.5, 0.5, 0.5}, -- NodeBox1
-			{0.375, -0.5, -0.5, 0.5, 0.5, -0.375}, -- NodeBox2
-			{-0.5, -0.5, -0.5, -0.375, 0.5, -0.375}, -- NodeBox3
-			{-0.5, -0.5, -0.5, 0.5, 0.0625, 0.5}, -- NodeBox4
-			{-0.5, -0.5, 0.375, -0.375, 0.5, 0.5}, -- NodeBox5
-			{0.375, -0.5, 0.375, 0.5, 0.5, 0.5}, -- NodeBox6
-			{-0.0625, 0.0625, -0.25, 0, 0.1875, 0.25}, -- NodeBox7
-			{-0.0625, 0.0625, -0.125, 0, 0.25, 0.125}, -- NodeBox8
+			{-0.1875, 0.0625, -0.125, 0.1875, 0.5, 0.3125},
+			{-0.1875, 0.125, -0.1875, 0.1875, 0.4375, 0.375}, 
+			{-0.1875, -0.5, 0.375, -0.0625, 0.3125, 0.5}, 
+			{0.0625, -0.5, 0.375, 0.1875, 0.3125, 0.5}, 
+			{-0.0625, -0.25, -0.0625, 0, 0.5, 0},
+			{-0.1875, 0.3125, 0.375, 0.1875, 0.375, 0.4375}, 
 		}
 	},
+	selection_box = {
+		type = "fixed",
+		fixed = {
+			{-0.1, 0.4, -0.1, 0.1, 0.41, 0.1},
+		}
+	},
+	on_place = minetest.rotate_node
+})
+
+minetest.register_node("myholeinthewall:machine", {
+	description = "Hole Machine",
+	tiles = {
+		"myholeinthewall_machine_top.png",
+		"myholeinthewall_machine.png",
+		"myholeinthewall_machine_side.png",
+		"myholeinthewall_machine_side.png",
+		"myholeinthewall_machine_side.png",
+		"myholeinthewall_machine_side.png",
+		},
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	groups = {cracky=2},
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.375, -0.5, -0.375, 0.375, 0.375, 0.375},
+			{-0.5, 0.375, -0.5, 0.5, 0.5, 0.5}, 
+		}
+	},
+	selection_box = {
+		type = "fixed",
+		fixed = {
+			{-0.375, -0.5, -0.375, 0.375, 0.5, 0.375},
+			{-0.1875, 1.0625, -0.125, 0.1875, 1.5, 0.3125},
+		}
+	},
+    on_place = function(itemstack, placer, pointed_thing)
+        local pos = pointed_thing.above
+        if minetest.get_node({x=pos.x, y=pos.y+1, z=pos.z}).name ~= "air" then
+            minetest.chat_send_player( placer:get_player_name(), "Not enough space to place this!" )
+            return
+        end
+        return minetest.item_place(itemstack, placer, pointed_thing)
+    end,
+
+	after_destruct = function(pos, oldnode)
+		minetest.set_node({x = pos.x, y = pos.y + 1, z = pos.z},{name = "air"})
+	end,
 
 	after_place_node = function(pos, placer)
+		minetest.set_node({x = pos.x, y = pos.y + 1, z = pos.z},{name = "myholeinthewall:machine_top", param2=minetest.dir_to_facedir(placer:get_look_dir())});
+	
 	local meta = minetest.env:get_meta(pos);
 			meta:set_string("owner",  (placer:get_player_name() or ""));
-			meta:set_string("infotext",  "Hole Machine is empty (owned by " .. (placer:get_player_name() or "") .. ")");
+			meta:set_string("infotext",  "Hole Machine (owned by " .. (placer:get_player_name() or "") .. ")");
 		end,
 
 can_dig = function(pos,player)
@@ -416,9 +471,9 @@ end
 minetest.register_craft({
 		output = 'myholeinthewall:machine',
 		recipe = {
-			{'default:sand', 'default:brick', 'default:sand'},
-			{'default:brick', 'default:steel_ingot', 'default:brick'},
-			{'default:sand', "default:brick", 'default:sand'},		
+			{'default:coalblock', 'default:coalblock', 'default:coalblock'},
+			{'default:coalblock', 'default:diamond', 'default:coalblock'},
+			{'default:coalblock', "default:coalblock", 'default:coalblock'},		
 		},
 })
 
