@@ -39,6 +39,7 @@ minetest.register_node("myholeinthewall:machine_top", {
 
 minetest.register_node("myholeinthewall:machine", {
 	description = "Hole Machine",
+	inventory_image = "myholeinthewall_inventory_image.png",
 	tiles = {
 		"myholeinthewall_machine_top.png",
 		"myholeinthewall_machine.png",
