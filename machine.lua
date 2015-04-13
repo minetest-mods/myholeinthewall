@@ -6,12 +6,12 @@ local anzahl = {}
 minetest.register_node("myholeinthewall:machine_top", {
 --	description = "Hole Machine",
 	tiles = {
-		"myholeinthewall_machinet_top.png",
-		"myholeinthewall_machinet_top.png",
-		"myholeinthewall_machinet.png",
-		"myholeinthewall_machinet.png",
-		"myholeinthewall_machinet.png",
-		"myholeinthewall_machinet.png",
+		"myholeinthewall_machinetop_top.png",
+		"myholeinthewall_machinetop_bottom.png",
+		"myholeinthewall_machinetop_rside.png",
+		"myholeinthewall_machinetop_lside.png",
+		"myholeinthewall_machinetop_back.png",
+		"myholeinthewall_machinetop_front.png"
 		},
 	drawtype = "nodebox",
 	paramtype = "light",
@@ -20,12 +20,14 @@ minetest.register_node("myholeinthewall:machine_top", {
 	node_box = {
 		type = "fixed",
 		fixed = {
-			{-0.1875, 0.0625, -0.125, 0.1875, 0.5, 0.3125},
+			{-0.1875, 0.0625, -0.125, 0.1875, 0.5, 0.3125}, 
 			{-0.1875, 0.125, -0.1875, 0.1875, 0.4375, 0.375}, 
 			{-0.1875, -0.5, 0.375, -0.0625, 0.3125, 0.5}, 
 			{0.0625, -0.5, 0.375, 0.1875, 0.3125, 0.5}, 
-			{-0.0625, -0.25, -0.0625, 0, 0.5, 0},
+			{-0.0625, -0.25, -0.0625, 0, 0.5, 0}, 
 			{-0.1875, 0.3125, 0.375, 0.1875, 0.375, 0.4375}, 
+			{0.1875, 0.1875, -0.0625, 0.25, 0.375, 0.125}, 
+			{0.1875, 0.25, -0.5, 0.25, 0.3125, 0}, 
 		}
 	},
 	selection_box = {
@@ -42,11 +44,11 @@ minetest.register_node("myholeinthewall:machine", {
 	inventory_image = "myholeinthewall_inventory_image.png",
 	tiles = {
 		"myholeinthewall_machine_top.png",
-		"myholeinthewall_machine.png",
+		"default_wood.png",
 		"myholeinthewall_machine_side.png",
 		"myholeinthewall_machine_side.png",
 		"myholeinthewall_machine_side.png",
-		"myholeinthewall_machine_side.png",
+		"myholeinthewall_machine_front.png"
 		},
 	drawtype = "nodebox",
 	paramtype = "light",
@@ -55,8 +57,12 @@ minetest.register_node("myholeinthewall:machine", {
 	node_box = {
 		type = "fixed",
 		fixed = {
-			{-0.375, -0.5, -0.375, 0.375, 0.375, 0.375},
+			{-0.375, -0.375, -0.375, 0.375, 0.375, 0.375}, 
 			{-0.5, 0.375, -0.5, 0.5, 0.5, 0.5}, 
+			{0.1875, -0.5, -0.375, 0.375, -0.375, -0.1875}, 
+			{0.1875, -0.5, 0.1875, 0.375, -0.375, 0.375}, 
+			{-0.375, -0.5, -0.375, -0.1875, -0.375, -0.1875},
+			{-0.375, -0.5, 0.1875, -0.1875, -0.375, 0.375}, 
 		}
 	},
 	selection_box = {
