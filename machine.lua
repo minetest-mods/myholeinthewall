@@ -7,7 +7,7 @@ minetest.register_node("myholeinthewall:machine_top", {
 --	description = "Hole Machine",
 	tiles = {
 		"myholeinthewall_machinetop_top.png",
-		"myholeinthewall_machinetop_bottom.png",
+		"myholeinthewall_machinetop_bottom.png^[transformR180",
 		"myholeinthewall_machinetop_rside.png",
 		"myholeinthewall_machinetop_lside.png",
 		"myholeinthewall_machinetop_back.png",
@@ -44,7 +44,7 @@ minetest.register_node("myholeinthewall:machine", {
 	inventory_image = "myholeinthewall_inventory_image.png",
 	tiles = {
 		"myholeinthewall_machine_top.png",
-		"default_wood.png",
+		"myholeinthewall_machine_bottom.png",
 		"myholeinthewall_machine_side.png",
 		"myholeinthewall_machine_side.png",
 		"myholeinthewall_machine_side.png",
