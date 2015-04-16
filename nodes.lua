@@ -6,7 +6,7 @@ minetest.register_node("myholeinthewall:diamond_"..mat,{
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
-	groups = {crumbly = 1},
+	groups = {crumbly = 1, cracky = 2},
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -54,7 +54,7 @@ minetest.register_node("myholeinthewall:diamond_rough_"..mat,{
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
-	groups = {crumbly = 1},
+	groups = {crumbly = 1, cracky = 2},
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -90,7 +90,7 @@ minetest.register_node("myholeinthewall:cross_"..mat,{
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
-	groups = {crumbly = 1},
+	groups = {crumbly = 1, cracky = 2},
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -119,7 +119,7 @@ minetest.register_node("myholeinthewall:cross_iron_"..mat,{
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
-	groups = {crumbly = 1},
+	groups = {crumbly = 1, cracky = 2},
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -159,7 +159,7 @@ minetest.register_node("myholeinthewall:o_"..mat,{
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
-	groups = {crumbly = 1},
+	groups = {crumbly = 1, cracky = 2},
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -194,7 +194,7 @@ minetest.register_node("myholeinthewall:o_"..mat,{
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
-	groups = {crumbly = 1},
+	groups = {crumbly = 1, cracky = 2},
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -222,6 +222,229 @@ minetest.register_node("myholeinthewall:o_"..mat,{
 	on_place = minetest.rotate_node,
 })
 
+--------------------------------------------------------------------------------------------
+--Half
+minetest.register_node("myholeinthewall:diamond_half_"..mat,{
+--	description = desc.." Diamond",
+	tiles = {image},
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	groups = {crumbly = 1, cracky = 2},
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, -0.5, -0.5, 0.5, -0.4375, 0}, 
+			{-0.5, -0.5, -0.5, -0.4375, 0.5, 0}, 
+			{-0.5, 0.4375, -0.5, 0.5, 0.5, 0}, 
+			{0.4375, -0.5, -0.5, 0.5, 0.5, 0}, 
+			{0.125, -0.5, -0.5, 0.5, -0.3125, 0}, 
+			{-0.5, -0.5, -0.5, -0.125, -0.3125, 0}, 
+			{-0.5, 0.3125, -0.5, -0.125, 0.5, 0}, 
+			{0.125, 0.3125, -0.5, 0.5, 0.5, 0}, 
+			{0.1875, -0.5, -0.5, 0.5, -0.25, 0}, 
+			{0.25, -0.5, -0.5, 0.5, -0.1875, 0}, 
+			{0.3125, -0.5, -0.5, 0.5, -0.125, 0}, 
+			{-0.5, -0.5, -0.5, -0.1875, -0.25, 0}, 
+			{-0.5, -0.5, -0.5, -0.25, -0.1875, 0}, 
+			{-0.5, -0.5, -0.5, -0.3125, -0.125, 0}, 
+			{-0.5, 0.25, -0.5, -0.1875, 0.5, 0}, 
+			{-0.5, 0.1875, -0.5, -0.25, 0.5, 0}, 
+			{-0.5, 0.125, -0.5, -0.3125, 0.5, 0}, 
+			{0.1875, 0.25, -0.5, 0.5, 0.5, 0}, 
+			{0.25, 0.1875, -0.5, 0.5, 0.5, 0}, 
+			{0.3125, 0.125, -0.5, 0.5, 0.5, 0}, 
+			{0.0625, -0.5, -0.5, 0.5, -0.375, 0}, 
+			{-0.5, -0.5, -0.5, -0.0625, -0.375, 0}, 
+			{-0.5, 0.0625, -0.5, -0.375, 0.5, 0}, 
+			{-0.5, -0.5, -0.5, -0.375, -0.0625, 0}, 
+			{-0.5, 0.375, -0.5, -0.0625, 0.5, 0}, 
+			{0.0625, 0.375, -0.5, 0.5, 0.5, 0}, 
+			{0.375, -0.5, -0.5, 0.5, -0.0625, 0}, 
+			{0.375, 0.0625, -0.5, 0.5, 0.5, 0}, 
+		}
+	},
+	selection_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5,-0.5,-0.5,0.5,0.5,0},
+		}	
+	},
+	on_place = minetest.rotate_node,
+})
+minetest.register_node("myholeinthewall:diamond_rough_half_"..mat,{
+--	description = desc.." Rough Diamond",
+	tiles = {image},
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	groups = {crumbly = 1, cracky = 2},
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, -0.5, -0.5, 0.5, -0.4375, 0},
+			{-0.5, -0.5, -0.5, -0.4375, 0.5, 0}, 
+			{-0.5, 0.4375, -0.5, 0.5, 0.5, 0}, 
+			{0.4375, -0.5, -0.5, 0.5, 0.5, 0}, 
+			{0.0625, -0.5, -0.5, 0.5, -0.3125, 0}, 
+			{-0.5, -0.5, -0.5, -0.0625, -0.3125, 0}, 
+			{-0.5, 0.3125, -0.5, -0.0625, 0.5, 0}, 
+			{0.0625, 0.3125, -0.5, 0.5, 0.5, 0}, 
+			{0.1875, -0.5, -0.5, 0.5, -0.1875, 0}, 
+			{0.3125, -0.5, -0.5, 0.5, -0.0625, 0}, 
+			{-0.5, -0.5, -0.5, -0.1875, -0.1875, 0}, 
+			{-0.5, -0.5, -0.5, -0.3125, -0.0625, 0}, 
+			{-0.5, 0.1875, -0.5, -0.1875, 0.5, 0}, 
+			{-0.5, 0.0625, -0.5, -0.3125, 0.5, 0}, 
+			{0.1875, 0.1875, -0.5, 0.5, 0.5, 0}, 
+			{0.3125, 0.0625, -0.5, 0.5, 0.5, 0}, 
+		}
+	},
+	selection_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5,-0.5,-0.5,0.5,0.5,0},
+		}	
+	},
+	on_place = minetest.rotate_node,
+})
+minetest.register_node("myholeinthewall:cross_half_"..mat,{
+--	description = desc.." Cross",
+	tiles = {image},
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	groups = {crumbly = 1, cracky = 2},
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, -0.5, -0.5, 0.5, -0.4375, 0}, 
+			{-0.5, -0.5, -0.5, -0.4375, 0.5, 0}, 
+			{-0.5, 0.4375, -0.5, 0.5, 0.5, 0}, 
+			{0.4375, -0.5, -0.5, 0.5, 0.5, 0}, 
+			{0.125, -0.5, -0.5, 0.5, -0.125, 0},
+			{-0.5, -0.5, -0.5, -0.125, -0.125, 0}, 
+			{-0.5, 0.125, -0.5, -0.125, 0.5, 0}, 
+			{0.125, 0.125, -0.5, 0.5, 0.5, 0}, 
+		}
+	},
+	selection_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5,-0.5,-0.5,0.5,0.5,0},
+		}	
+	},
+	on_place = minetest.rotate_node,
+})
+
+minetest.register_node("myholeinthewall:cross_iron_half_"..mat,{
+--	description = desc.." Iron Cross",
+	tiles = {image},
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	groups = {crumbly = 1, cracky = 2},
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, -0.5, -0.5, 0.5, -0.4375, 0}, 
+			{-0.5, -0.5, -0.5, -0.4375, 0.5, 0}, 
+			{-0.5, 0.4375, -0.5, 0.5, 0.5, 0}, 
+			{0.4375, -0.5, -0.5, 0.5, 0.5, 0}, 
+			{0.125, -0.5, -0.5, 0.5, -0.3125, 0}, 
+			{-0.5, -0.5, -0.5, -0.125, -0.3125, 0},
+			{-0.5, 0.3125, -0.5, -0.125, 0.5, 0},
+			{0.125, 0.3125, -0.5, 0.5, 0.5, 0}, 
+			{0.1875, -0.5, -0.5, 0.5, -0.25, 0},
+			{0.25, -0.5, -0.5, 0.5, -0.1875, 0},
+			{0.3125, -0.5, -0.5, 0.5, -0.125, 0},
+			{-0.5, -0.5, -0.5, -0.1875, -0.25, 0}, 
+			{-0.5, -0.5, -0.5, -0.25, -0.1875, 0}, 
+			{-0.5, -0.5, -0.5, -0.3125, -0.125, 0}, 
+			{-0.5, 0.25, -0.5, -0.1875, 0.5, 0},
+			{-0.5, 0.1875, -0.5, -0.25, 0.5, 0}, 
+			{-0.5, 0.125, -0.5, -0.3125, 0.5, 0}, 
+			{0.1875, 0.25, -0.5, 0.5, 0.5, 0}, 
+			{0.25, 0.1875, -0.5, 0.5, 0.5, 0}, 
+			{0.3125, 0.125, -0.5, 0.5, 0.5, 0}, 
+		}
+	},
+	selection_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5,-0.5,-0.5,0.5,0.5,0},
+		}	
+	},
+	on_place = minetest.rotate_node,
+})
+minetest.register_node("myholeinthewall:o_half_"..mat,{
+--	description = desc.." O",
+	tiles = {image},
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	groups = {crumbly = 1, cracky = 2},
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.25, 0.3125, -0.5, 0.25, 0.5, 0}, 
+			{-0.25, -0.5, -0.5, 0.25, -0.3125, 0}, 
+			{-0.5, -0.25, -0.5, -0.3125, 0.25, 0},
+			{0.3125, -0.25, -0.5, 0.5, 0.25, 0}, 
+			{0.125, -0.4375, -0.5, 0.3125, -0.25, 0}, 
+			{0.1875, -0.375, -0.5, 0.375, -0.1875, 0},
+			{0.25, -0.3125, -0.5, 0.4375, -0.125, 0}, 
+			{-0.3125, -0.4375, -0.5, -0.125, -0.25, 0}, 
+			{-0.375, -0.375, -0.5, -0.1875, -0.1875, 0}, 
+			{-0.4375, -0.3125, -0.5, -0.25, -0.125, 0}, 
+			{-0.3125, 0.25, -0.5, -0.125, 0.4375, 0}, 
+			{-0.375, 0.1875, -0.5, -0.1875, 0.375, 0}, 
+			{-0.4375, 0.125, -0.5, -0.25, 0.3125, 0},
+			{0.125, 0.25, -0.5, 0.3125, 0.4375, 0}, 
+			{0.1875, 0.1875, -0.5, 0.375, 0.375, 0}, 
+			{0.25, 0.125, -0.5, 0.4375, 0.3125, 0}, 
+		}
+	},
+	selection_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5,-0.5,-0.5,0.5,0.5,0},
+		}	
+	},
+	on_place = minetest.rotate_node,
+})minetest.register_node("myholeinthewall:x_half_"..mat,{
+--	description = desc.." X",
+	tiles = {image},
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	groups = {crumbly = 1, cracky = 2},
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, 0.25, -0.5, -0.25, 0.5, 0}, 
+			{-0.375, 0.125, -0.5, -0.125, 0.375, 0}, 
+			{-0.25, 0.0625, -0.5, -0.0625, 0.25, 0}, 
+			{-0.5, -0.5, -0.5, -0.25, -0.25, 0}, 
+			{-0.375, -0.375, -0.5, -0.125, -0.125, 0},
+			{-0.25, -0.25, -0.5, -0.0625, -0.0625, 0}, 
+			{0.25, 0.25, -0.5, 0.5, 0.5, 0}, 
+			{0.125, 0.125, -0.5, 0.375, 0.375, 0}, 
+			{0.0625, 0.0625, -0.5, 0.25, 0.25, 0}, 
+			{0.25, -0.5, -0.5, 0.5, -0.25, 0}, 
+			{0.125, -0.375, -0.5, 0.375, -0.125, 0}, 
+			{0.0625, -0.25, -0.5, 0.25, -0.0625, 0},
+			{-0.1875, -0.1875, -0.5, 0.1875, 0.1875, 0}, 
+		}
+	},
+	selection_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5,-0.5,-0.5,0.5,0.5,0},
+		}	
+	},
+	on_place = minetest.rotate_node,
+})
 end
 
 

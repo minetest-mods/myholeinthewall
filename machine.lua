@@ -2,43 +2,21 @@ local material = {}
 local shape = {}
 local make_ok = {}
 local anzahl = {}
+function minetest.get_mydrillpress_formspec(pos)
+    local spos = pos.x .. "," .. pos.y .. "," ..pos.z
+    local formspec =
+        "size[9,6]"..
+        "list[nodemeta:".. spos .. ";main;1.5,0.5;6,1;]"..
+        "list[current_player;main;0.5,2;8,4;]"
+    return formspec
+end
 
-minetest.register_node("myholeinthewall:machine_top", {
---	description = "Hole Machine",
-	tiles = {
-		"myholeinthewall_machinetop_top.png",
-		"myholeinthewall_machinetop_bottom.png^[transformR180",
-		"myholeinthewall_machinetop_rside.png",
-		"myholeinthewall_machinetop_lside.png",
-		"myholeinthewall_machinetop_back.png",
-		"myholeinthewall_machinetop_front.png"
-		},
-	drawtype = "nodebox",
-	paramtype = "light",
-	paramtype2 = "facedir",
-	groups = {cracky=2},
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.1875, 0.0625, -0.125, 0.1875, 0.5, 0.3125}, 
-			{-0.1875, 0.125, -0.1875, 0.1875, 0.4375, 0.375}, 
-			{-0.1875, -0.5, 0.375, -0.0625, 0.3125, 0.5}, 
-			{0.0625, -0.5, 0.375, 0.1875, 0.3125, 0.5}, 
-			{-0.0625, -0.25, -0.0625, 0, 0.5, 0}, 
-			{-0.1875, 0.3125, 0.375, 0.1875, 0.375, 0.4375}, 
-			{0.1875, 0.1875, -0.0625, 0.25, 0.375, 0.125}, 
-			{0.1875, 0.25, -0.5, 0.25, 0.3125, 0}, 
-		}
-	},
-	selection_box = {
-		type = "fixed",
-		fixed = {
-			{-0.1, 0.4, -0.1, 0.1, 0.41, 0.1},
-		}
-	},
-	on_place = minetest.rotate_node
-})
-
+local function has_mydrillpress_privilege(meta, player)
+    if player:get_player_name() ~= meta:get_string("owner") then
+        return false
+    end
+    return true
+end
 minetest.register_node("myholeinthewall:machine", {
 	description = "Hole Machine",
 	inventory_image = "myholeinthewall_inventory_image.png",
@@ -69,7 +47,6 @@ minetest.register_node("myholeinthewall:machine", {
 		type = "fixed",
 		fixed = {
 			{-0.375, -0.5, -0.375, 0.375, 0.5, 0.375},
-			{-0.1875, 1.0625, -0.125, 0.1875, 1.5, 0.3125},
 		}
 	},
     on_place = function(itemstack, placer, pointed_thing)
@@ -88,10 +65,145 @@ minetest.register_node("myholeinthewall:machine", {
 	after_place_node = function(pos, placer)
 		minetest.set_node({x = pos.x, y = pos.y + 1, z = pos.z},{name = "myholeinthewall:machine_top", param2=minetest.dir_to_facedir(placer:get_look_dir())});
 	
-	local meta = minetest.env:get_meta(pos);
-			meta:set_string("owner",  (placer:get_player_name() or ""));
-			meta:set_string("infotext",  "Hole Machine (owned by " .. (placer:get_player_name() or "") .. ")");
-		end,
+
+        local meta = minetest.get_meta(pos)
+        meta:set_string("owner", placer:get_player_name() or "")
+        meta:set_string("infotext", "Drill Press (owned by "..
+                meta:get_string("owner")..")")
+    end,
+    on_construct = function(pos)
+        local meta = minetest.get_meta(pos)
+        meta:set_string("infotext", "Drill Press")
+        meta:set_string("owner", "")
+        local inv = meta:get_inventory()
+        inv:set_size("main", 9*6)
+    end,
+
+    can_dig = function(pos,player)
+
+	local meta = minetest.env:get_meta({x=pos.x,y=pos.y+1,z=pos.z});
+	local inv = meta:get_inventory()
+	if not inv:is_empty("ingot") then
+		return false
+	elseif not inv:is_empty("res") then
+		return false
+	end
+	
+
+
+        local meta = minetest.get_meta(pos);
+        local inv = meta:get_inventory()
+
+        return inv:is_empty("main") and has_mydrillpress_privilege(meta, player)
+	
+
+
+    end,
+    allow_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
+        local meta = minetest.get_meta(pos)
+        if not has_mydrillpress_privilege(meta, player) then
+            minetest.log("action", player:get_player_name()..
+                    " tried to access a drill press belonging to "..
+                    meta:get_string("owner").." at "..
+                    minetest.pos_to_string(pos))
+            return 0
+        end
+        return count
+    end,
+    allow_metadata_inventory_put = function(pos, listname, index, stack, player)
+        local meta = minetest.get_meta(pos)
+        if not has_mydrillpress_privilege(meta, player) then
+            minetest.log("action", player:get_player_name()..
+                    " tried to access a drill press belonging to "..
+                    meta:get_string("owner").." at "..
+                    minetest.pos_to_string(pos))
+            return 0
+        end
+        return stack:get_count()
+    end,
+    allow_metadata_inventory_take = function(pos, listname, index, stack, player)
+        local meta = minetest.get_meta(pos)
+        if not has_mydrillpress_privilege(meta, player) then
+            minetest.log("action", player:get_player_name()..
+                    " tried to access a drill press belonging to "..
+                    meta:get_string("owner").." at "..
+                    minetest.pos_to_string(pos))
+            return 0
+        end
+        return stack:get_count()
+    end,
+    on_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
+        minetest.log("action", player:get_player_name()..
+                " moves stuff into drill press at "..minetest.pos_to_string(pos))
+    end,
+    on_metadata_inventory_put = function(pos, listname, index, stack, player)
+        minetest.log("action", player:get_player_name()..
+                " moves stuff into drill press at "..minetest.pos_to_string(pos))
+    end,
+    on_metadata_inventory_take = function(pos, listname, index, stack, player)
+        minetest.log("action", player:get_player_name()..
+                " takes stuff from drill press at "..minetest.pos_to_string(pos))
+    end,
+    on_rightclick = function(pos, node, clicker)
+        local meta = minetest.get_meta(pos)
+        if has_mydrillpress_privilege(meta, clicker) then
+            minetest.show_formspec(
+                clicker:get_player_name(),
+                "myholeinthewall:machine",
+                minetest.get_mydrillpress_formspec(pos)
+            )
+        end
+    end,
+
+
+
+
+
+
+
+})
+
+
+minetest.register_node("myholeinthewall:machine_top", {
+	description = "Hole Machine",
+	tiles = {
+		"myholeinthewall_machinetop_top.png",
+		"myholeinthewall_machinetop_bottom.png^[transformR180",
+		"myholeinthewall_machinetop_rside.png",
+		"myholeinthewall_machinetop_lside.png",
+		"myholeinthewall_machinetop_back.png",
+		"myholeinthewall_machinetop_front.png"
+		},
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	drop = "myholeinthewall:machine",
+	groups = {cracky=2, not_in_creative_inventory=0},
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.1875, 0.0625, -0.125, 0.1875, 0.5, 0.3125}, 
+			{-0.1875, 0.125, -0.1875, 0.1875, 0.4375, 0.375}, 
+			{-0.1875, -0.5, 0.375, -0.0625, 0.3125, 0.5}, 
+			{0.0625, -0.5, 0.375, 0.1875, 0.3125, 0.5}, 
+			{-0.0625, -0.25, -0.0625, 0, 0.5, 0}, 
+			{-0.1875, 0.3125, 0.375, 0.1875, 0.375, 0.4375}, 
+			{0.1875, 0.1875, -0.0625, 0.25, 0.375, 0.125}, 
+			{0.1875, 0.25, -0.5, 0.25, 0.3125, 0}, 
+		}
+	},
+
+--	on_place = minetest.rotate_node,
+
+	after_destruct = function(pos, oldnode)
+		minetest.set_node({x = pos.x, y = pos.y - 1, z = pos.z},{name = "air"})
+	end,
+
+	
+--	local meta = minetest.env:get_meta(pos);
+--			meta:set_string("owner",  (placer:get_player_name() or ""));
+--			meta:set_string("infotext",  "Hole Machine (owned by " .. (placer:get_player_name() or "") .. ")");
+		
 
 can_dig = function(pos,player)
 	local meta = minetest.env:get_meta(pos);
@@ -101,7 +213,12 @@ can_dig = function(pos,player)
 	elseif not inv:is_empty("res") then
 		return false
 	end
-	return true
+--	return true
+    
+        local meta = minetest.get_meta({x=pos.x,y=pos.y-1,z=pos.z});
+        local inv = meta:get_inventory()
+        return inv:is_empty("main") and has_mydrillpress_privilege(meta, player)
+    
 end,
 
 on_construct = function(pos)
@@ -114,13 +231,21 @@ on_construct = function(pos)
 		"label[5.5,2.5;Output:]"..
 		"label[0,0;Choose Hole:]"..
 --		Column 1
-		"image_button[1,1;1,1;myholeinthewall_mach1.png;diamond; ]"..
-		"image_button[1,2;1,1;myholeinthewall_mach2.png;diamondr; ]"..
-		"image_button[1,3;1,1;myholeinthewall_mach3.png;x; ]"..
+		"image_button[0.5,1;1,1;myholeinthewall_mach1.png;diamond; ]"..
+		"image_button[0.5,2;1,1;myholeinthewall_mach2.png;diamondr; ]"..
+		"image_button[0.5,3;1,1;myholeinthewall_mach3.png;x; ]"..
 --		Column 2
+		"image_button[1.5,1;1,1;myholeinthewall_mach7.png;diamondh; ]"..
+		"image_button[1.5,2;1,1;myholeinthewall_mach8.png;diamondrh; ]"..
+		"image_button[1.5,3;1,1;myholeinthewall_mach9.png;xh; ]"..
+--              Column 3
 		"image_button[2.5,1;1,1;myholeinthewall_mach4.png;cross; ]"..
 		"image_button[2.5,2;1,1;myholeinthewall_mach5.png;crossi; ]"..
 		"image_button[2.5,3;1,1;myholeinthewall_mach6.png;o; ]"..
+--		Column 4
+		"image_button[3.5,1;1,1;myholeinthewall_mach10.png;crossh; ]"..
+		"image_button[3.5,2;1,1;myholeinthewall_mach11.png;crossih; ]"..
+		"image_button[3.5,3;1,1;myholeinthewall_mach12.png;oh; ]"..
 		"list[current_player;main;0,5;8,4;]")
 	meta:set_string("infotext", "Brick Machine")
 	local inv = meta:get_inventory()
@@ -138,6 +263,12 @@ or fields["x"]
 or fields["cross"]
 or fields["crossi"]
 or fields["o"]
+or fields["diamondh"] 
+or fields["diamondrh"] 
+or fields["xh"] 
+or fields["crossh"]
+or fields["crossih"]
+or fields["oh"]
 then
 
 	if fields["diamond"] then
@@ -189,6 +320,61 @@ then
 		make_ok = "0"
 		anzahl = "1"
 		shape = "myholeinthewall:o_"
+		if inv:is_empty("ingot") then
+			return
+		end
+	end
+
+----------------------------------------------------------
+if fields["diamondh"] then
+		make_ok = "0"
+		anzahl = "2"
+		shape = "myholeinthewall:diamond_half_"
+		if inv:is_empty("ingot") then
+			return
+		end
+	end
+
+	if fields["diamondrh"] then
+		make_ok = "0"
+		anzahl = "2"
+		shape = "myholeinthewall:diamond_rough_half_"
+		if inv:is_empty("ingot") then
+			return
+		end
+	end
+
+	if fields["xh"] then
+		make_ok = "0"
+		anzahl = "1"
+		shape = "myholeinthewall:x_half_"
+		if inv:is_empty("ingot") then
+			return
+		end
+	end
+
+	if fields["crossh"] then
+		make_ok = "0"
+		anzahl = "2"
+		shape = "myholeinthewall:cross_half_"
+		if inv:is_empty("ingot") then
+			return
+		end
+	end
+
+	if fields["crossih"] then
+		make_ok = "0"
+		anzahl = "2"
+		shape = "myholeinthewall:cross_iron_half_"
+		if inv:is_empty("ingot") then
+			return
+		end
+	end
+
+	if fields["oh"] then
+		make_ok = "0"
+		anzahl = "2"
+		shape = "myholeinthewall:o_half_"
 		if inv:is_empty("ingot") then
 			return
 		end
