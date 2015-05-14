@@ -178,7 +178,7 @@ minetest.register_node("myholeinthewall:machine_top", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	drop = "myholeinthewall:machine",
-	groups = {cracky=2, not_in_creative_inventory=0},
+	groups = {cracky=2, not_in_creative_inventory=1},
 	node_box = {
 		type = "fixed",
 		fixed = {

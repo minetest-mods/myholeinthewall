@@ -7,6 +7,7 @@ minetest.register_node("myholeinthewall:diamond_"..mat,{
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {crumbly = 1, cracky = 2},
+	sounds = default.node_sound_stone_defaults(),
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -55,6 +56,7 @@ minetest.register_node("myholeinthewall:diamond_rough_"..mat,{
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {crumbly = 1, cracky = 2},
+	sounds = default.node_sound_stone_defaults(),
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -91,6 +93,7 @@ minetest.register_node("myholeinthewall:cross_"..mat,{
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {crumbly = 1, cracky = 2},
+	sounds = default.node_sound_stone_defaults(),
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -120,6 +123,7 @@ minetest.register_node("myholeinthewall:cross_iron_"..mat,{
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {crumbly = 1, cracky = 2},
+	sounds = default.node_sound_stone_defaults(),
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -160,6 +164,7 @@ minetest.register_node("myholeinthewall:o_"..mat,{
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {crumbly = 1, cracky = 2},
+	sounds = default.node_sound_stone_defaults(),
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -195,6 +200,7 @@ minetest.register_node("myholeinthewall:o_"..mat,{
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {crumbly = 1, cracky = 2},
+	sounds = default.node_sound_stone_defaults(),
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -231,6 +237,7 @@ minetest.register_node("myholeinthewall:diamond_half_"..mat,{
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {crumbly = 1, cracky = 2},
+	sounds = default.node_sound_stone_defaults(),
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -279,6 +286,7 @@ minetest.register_node("myholeinthewall:diamond_rough_half_"..mat,{
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {crumbly = 1, cracky = 2},
+	sounds = default.node_sound_stone_defaults(),
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -315,6 +323,7 @@ minetest.register_node("myholeinthewall:cross_half_"..mat,{
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {crumbly = 1, cracky = 2},
+	sounds = default.node_sound_stone_defaults(),
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -344,6 +353,7 @@ minetest.register_node("myholeinthewall:cross_iron_half_"..mat,{
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {crumbly = 1, cracky = 2},
+	sounds = default.node_sound_stone_defaults(),
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -384,6 +394,7 @@ minetest.register_node("myholeinthewall:o_half_"..mat,{
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {crumbly = 1, cracky = 2},
+	sounds = default.node_sound_stone_defaults(),
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -419,6 +430,7 @@ minetest.register_node("myholeinthewall:o_half_"..mat,{
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {crumbly = 1, cracky = 2},
+	sounds = default.node_sound_stone_defaults(),
 	node_box = {
 		type = "fixed",
 		fixed = {
