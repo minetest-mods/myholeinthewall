@@ -193,27 +193,19 @@ minetest.register_node("myholeinthewall:machine_top", {
 		}
 	},
 
---	on_place = minetest.rotate_node,
-
 	after_destruct = function(pos, oldnode)
 		minetest.set_node({x = pos.x, y = pos.y - 1, z = pos.z},{name = "air"})
 	end,
 
-	
---	local meta = minetest.env:get_meta(pos);
---			meta:set_string("owner",  (placer:get_player_name() or ""));
---			meta:set_string("infotext",  "Hole Machine (owned by " .. (placer:get_player_name() or "") .. ")");
-		
 
 can_dig = function(pos,player)
-	local meta = minetest.env:get_meta(pos);
+	local meta = minetest.get_meta(pos);
 	local inv = meta:get_inventory()
 	if not inv:is_empty("ingot") then
 		return false
 	elseif not inv:is_empty("res") then
 		return false
 	end
---	return true
     
         local meta = minetest.get_meta({x=pos.x,y=pos.y-1,z=pos.z});
         local inv = meta:get_inventory()
@@ -222,7 +214,7 @@ can_dig = function(pos,player)
 end,
 
 on_construct = function(pos)
-	local meta = minetest.env:get_meta(pos)
+	local meta = minetest.get_meta(pos)
 	meta:set_string("formspec", "invsize[8,9;]"..
 		"background[-0.15,-0.25;8.40,9.75;myholeinthewall_background.png]"..
 		"list[current_name;ingot;5.5,1;1,1;]"..
@@ -238,7 +230,7 @@ on_construct = function(pos)
 		"image_button[1.5,1;1,1;myholeinthewall_mach7.png;diamondh; ]"..
 		"image_button[1.5,2;1,1;myholeinthewall_mach8.png;diamondrh; ]"..
 		"image_button[1.5,3;1,1;myholeinthewall_mach9.png;xh; ]"..
---              Column 3
+--      Column 3
 		"image_button[2.5,1;1,1;myholeinthewall_mach4.png;cross; ]"..
 		"image_button[2.5,2;1,1;myholeinthewall_mach5.png;crossi; ]"..
 		"image_button[2.5,3;1,1;myholeinthewall_mach6.png;o; ]"..
@@ -254,7 +246,7 @@ on_construct = function(pos)
 end,
 
 on_receive_fields = function(pos, formname, fields, sender)
-	local meta = minetest.env:get_meta(pos)
+	local meta = minetest.get_meta(pos)
 	local inv = meta:get_inventory()
 
 if fields["diamond"] 
