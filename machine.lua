@@ -432,8 +432,8 @@ if fields["diamondh"] then
 				make_ok = "1"
 		end
 
-		if ingotstack:get_name()=="default:pinewood" then
-				material = "default_pinewood"
+		if ingotstack:get_name()=="default:pine_wood" then
+				material = "default_pine_wood"
 				make_ok = "1"
 		end
 
