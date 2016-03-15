@@ -9,3 +9,5 @@ There are full nodes and half nodes.
 Right click on the bottom of the drill press for storage.
 
 Licence - WTFPL
+
+Forum - https://forum.minetest.net/viewtopic.php?f=9&t=14209
