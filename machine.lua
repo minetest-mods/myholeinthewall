@@ -239,7 +239,7 @@ on_construct = function(pos)
 		"image_button[3.5,2;1,1;myholeinthewall_mach11.png;crossih; ]"..
 		"image_button[3.5,3;1,1;myholeinthewall_mach12.png;oh; ]"..
 		"list[current_player;main;0,5;8,4;]")
-	meta:set_string("infotext", "Brick Machine")
+	meta:set_string("infotext", "Drill Press")
 	local inv = meta:get_inventory()
 	inv:set_size("ingot", 1)
 	inv:set_size("res", 1)
