@@ -90,11 +90,11 @@ myholeinthewall.register_all(--material, description, image, groups, craft item
 --]]
 ---[[
 myholeinthewall.register_all(--material, description, image, groups, craft item
-	"default_pinewood", 
+	"default_pine_wood", 
 	"Pine Wood", 
-	"default_pinewood.png",
+	"default_pine_wood.png",
 	"{cracky = 1, oddly_breakable_by_hand = 1,not_in_creative_inventory=1}",
-	"default:pinewood",
+	"default:pine_wood",
 	"normal"
 	)
 --]]
@@ -290,11 +290,11 @@ myholeinthewall.register_all(--material, description, image, groups, craft item
 --]]
 ---[[
 myholeinthewall.register_all(--material, description, image, groups, craft item
-	"default_pinetree", 
+	"default_pine_tree", 
 	"Pine Tree", 
-	"default_pinetree.png",
+	"default_pine_tree.png",
 	"{cracky = 1, oddly_breakable_by_hand = 1,not_in_creative_inventory=1}",
-	"default:pinetree",
+	"default:pine_tree",
 	"normal"
 	)
 --]]
