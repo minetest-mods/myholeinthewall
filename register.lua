@@ -258,7 +258,7 @@ myholeinthewall.register_all(--material, description, image, groups, craft item
 	"normal"
 	)
 --]]
---[[
+---[[
 myholeinthewall.register_all(--material, description, image, groups, craft item
 	"default_obsidian", 
 	"Obsidian", 
