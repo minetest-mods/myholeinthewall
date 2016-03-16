@@ -392,11 +392,6 @@ if fields["diamondh"] then
 				make_ok = "1"
 		end
 
-		if ingotstack:get_name()=="wool:white" then
-				material = "millwork_white"
-				make_ok = "1"
-		end
-
 		if ingotstack:get_name()=="default:desert_stone" then
 				material = "default_desert_stone"
 				make_ok = "1"
@@ -411,14 +406,9 @@ if fields["diamondh"] then
 				material = "default_stone"
 				make_ok = "1"
 		end
-
+--[[
 		if ingotstack:get_name()=="default:cactus" then
 				material = "default_cactus"
-				make_ok = "1"
-		end
-
-		if ingotstack:get_name()=="wool:white" then
-				material = "millwork_white"
 				make_ok = "1"
 		end
 
@@ -426,7 +416,7 @@ if fields["diamondh"] then
 				material = "default_sand"
 				make_ok = "1"
 		end
-
+]]
 		if ingotstack:get_name()=="default:wood" then
 				material = "default_wood"
 				make_ok = "1"
@@ -441,7 +431,7 @@ if fields["diamondh"] then
 				material = "default_dirt"
 				make_ok = "1"
 		end
-
+--[[
 		if ingotstack:get_name()=="default:brick" then
 				material = "default_brick"
 				make_ok = "1"
@@ -451,22 +441,22 @@ if fields["diamondh"] then
 				material = "default_bronze_block"
 				make_ok = "1"
 		end
-
+]]
 		if ingotstack:get_name()=="default:coalblock" then
 				material = "default_coal_block"
 				make_ok = "1"
 		end
-
+--[[
 		if ingotstack:get_name()=="default:copperblock" then
 				material = "default_copper_block"
 				make_ok = "1"
 		end
-
+]]
 		if ingotstack:get_name()=="default:desert_cobble" then
 				material = "default_desert_cobble"
 				make_ok = "1"
 		end
-
+--[[
 		if ingotstack:get_name()=="default:diamondblock" then
 				material = "default_diamond_block"
 				make_ok = "1"
@@ -481,12 +471,12 @@ if fields["diamondh"] then
 				material = "default_gold_block"
 				make_ok = "1"
 		end
-
+]]
 		if ingotstack:get_name()=="default:gravel" then
 				material = "default_gravel"
 				make_ok = "1"
 		end
-
+--[[
 		if ingotstack:get_name()=="default:ice" then
 				material = "default_ice"
 				make_ok = "1"
@@ -496,12 +486,12 @@ if fields["diamondh"] then
 				material = "default_jungletree"
 				make_ok = "1"
 		end
-
+]]
 		if ingotstack:get_name()=="default:junglewood" then
 				material = "default_junglewood"
 				make_ok = "1"
 		end
-
+--[[
 		if ingotstack:get_name()=="default:lava_source" then
 				material = "default_lava"
 				make_ok = "1"
@@ -511,7 +501,7 @@ if fields["diamondh"] then
 				material = "default_mese"
 				make_ok = "1"
 		end
-
+]]
 		if ingotstack:get_name()=="default:mossycobble" then
 				material = "default_mossycobble"
 				make_ok = "1"
@@ -521,7 +511,7 @@ if fields["diamondh"] then
 				material = "default_obsidian"
 				make_ok = "1"
 		end
-
+--[[
 		if ingotstack:get_name()=="default:obsidian_glass" then
 				material = "default_obsidian_glass"
 				make_ok = "1"
@@ -561,12 +551,13 @@ if fields["diamondh"] then
 				material = "default_tree"
 				make_ok = "1"
 		end
-
+]]
+--[[
 		if ingotstack:get_name()=="default:water_source" then
 				material = "default_water"
 				make_ok = "1"
 		end
-
+]]]
 		if ingotstack:get_name()=="farming:straw" then
 				material = "farming_straw"
 				make_ok = "1"
