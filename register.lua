@@ -280,7 +280,7 @@ myholeinthewall.register_all(--material, description, image, groups, craft item,
 --]]
 --[[
 myholeinthewall.register_all(--material, description, image, groups, craft item
-	"default_obsidian_brick", 
+	"default_obsidian_brick",
 	"Obsidian Brick", 
 	"default_obsidian_brick.png",
 	"{cracky = 1, oddly_breakable_by_hand = 1,not_in_creative_inventory=1}",
