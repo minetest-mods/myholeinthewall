@@ -557,7 +557,7 @@ if fields["diamondh"] then
 				material = "default_water"
 				make_ok = "1"
 		end
-]]]
+]]
 		if ingotstack:get_name()=="farming:straw" then
 				material = "farming_straw"
 				make_ok = "1"
